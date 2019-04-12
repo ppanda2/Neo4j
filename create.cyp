@@ -1,3 +1,5 @@
+//Create file.
+
 CREATE (Astudent:Person {name:'A person 1', netid:1})
 CREATE (Bstudent:Person {name:'B person 2', netid:2})
 CREATE (Cstudent:Person {name:'C person 3', netid:3})
