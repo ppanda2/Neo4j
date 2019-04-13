@@ -29,3 +29,21 @@ MATCH(Y:Building) where Y.name = "Library"
 MERGE
 (X)-[V:VISITED {distance:300, time_spent:courses.duration }]->(Y)
 DELETE r
+
+
+//4.  Add a different possible parking location and include the connections to where X had to go.
+//Modify the query for how far the student walked to determine the better parking location for the student (least distance walked).
+//The better parking location and the total distance walked should be in the final result.
+CREATE (ParkingLotD:Parking {name:"lot D"})
+
+MATCH (X:Person) WHERE X.name = "A person 1"
+MATCH (Y:Parking) WHERE Y.name = "lot D"
+CREATE
+(X)-[:VISITED {distance:600}]-> (Y)
+
+MATCH (X:Person)-[r:VISITED]-(pd)
+WHERE X.name = "A person 1"
+return pd.name,
+	case	when pd.name = "lot D" THEN sum(r.distance)-600
+    		when pd.name = "lot A" THEN sum(r.distance)-500
+    END as sum_distance

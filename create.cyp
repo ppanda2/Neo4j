@@ -1,4 +1,5 @@
 //Create file.
+//Assumptions: time spent is hours and distance in meters
 
 CREATE (Astudent:Person {name:'A person 1', netid:1})
 CREATE (Bstudent:Person {name:'B person 2', netid:2})
@@ -40,8 +41,6 @@ CREATE
  (Fstudent)-[:TOOK]->(Network),
  (Gstudent)-[:TOOK]->(Database)
 
-
-
 CREATE
 (Astudent)-[:INTERACTED_WITH]->(Bstudent),
 (Astudent)-[:INTERACTED_WITH]->(Cstudent),
@@ -59,24 +58,29 @@ CREATE
 (Estudent)-[:PARKED_AT]->(ParkingLotC),
 (Fstudent)-[:PARKED_AT]->(ParkingLotC)
 
-//time spent is hours
-//distance in meters
+
 CREATE
-(Astudent)-[:VISITED {distance:300, time_spent: 160, hadlunch:"12:00"}]-> (Library),
+(Astudent)-[:VISITED {distance:500}]-> (ParkingLotA),
+(Astudent)-[:VISITED {distance:300, time_spent: 160}]-> (Library),
 (Astudent)-[:VISITED {distance:100, time_spent: 100}]-> (SF),
 (Astudent)-[:VISITED {distance:200, time_spent: 100}]-> (Science),
 (Astudent)-[:VISITED {distance:100, time_spent: 100}]-> (UU),
 (Astudent)-[:VISITED {distance:200, time_spent: 200}]-> (Cafeteria),
 (Astudent)-[:VISITED {distance:300, time_spent: 30}]-> (Starbucks),
+(Bstudent)-[:VISITED {distance:500}]-> (ParkingLotA),
 (Bstudent)-[:VISITED {distance:600, time_spent: 200}]-> (Arts),
-(Bstudent)-[:VISITED {distance:300, time_spent: 100, hadlunch:"12:00"}]-> (Library),
+(Bstudent)-[:VISITED {distance:300, time_spent: 100}]-> (Library),
 (Bstudent)-[:VISITED {distance:100, time_spent: 100}]-> (SF),
+(Cstudent)-[:VISITED {distance:500}]-> (ParkingLotA),
 (Cstudent)-[:VISITED {distance:200, time_spent: 200}]-> (Science),
-(Cstudent)-[:VISITED {distance:300, time_spent: 200, hadlunch:"12:00"}]-> (Starbucks),
-(Dstudent)-[:VISITED {distance:300, time_spent: 200, hadlunch:"12:00"}]-> (Library),
-(Estudent)-[:VISITED {distance:100, time_spent: 400, hadlunch:"12:00"}]-> (SF),
-(Fstudent)-[:VISITED {distance:10, time_spent: 30, hadlunch:"12:00"}]-> (Petes),
-(Gstudent)-[:VISITED {distance:500, time_spent: 300, hadlunch:"12:00"}]-> (MBA)
+(Cstudent)-[:VISITED {distance:300, time_spent: 200}]-> (Starbucks),
+(Dstudent)-[:VISITED {distance:700}]-> (ParkingLotB),
+(Dstudent)-[:VISITED {distance:300, time_spent: 200}]-> (Library),
+(Estudent)-[:VISITED {distance:800}]-> (ParkingLotC),
+(Estudent)-[:VISITED {distance:100, time_spent: 400}]-> (SF),
+(Fstudent)-[:VISITED {distance:800}]-> (ParkingLotC),
+(Fstudent)-[:VISITED {distance:10, time_spent: 30}]-> (Petes),
+(Gstudent)-[:VISITED {distance:500, time_spent: 300}]-> (MBA)
 
 CREATE
 (Astudent)-[:STUDIED_WITH {whattime:"10:00",howlong: 60}]->(Bstudent),
